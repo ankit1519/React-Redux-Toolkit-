@@ -10,10 +10,16 @@ const incrementByAmount='incrementByAmount'
 
 //for db
 const init="init"
-async function getUser(dispatch,getState){
+/*async function getUser(dispatch,getState){
     const {data}= await axios.get("http://localhost:3000/accounts/1");
     dispatch({type:init,payload:data.amount})
-}
+}*/
+ function getUsers(id){
+  return  async (dispatch,getState)=>{
+        const {data}= await axios.get(`http://localhost:3000/accounts/${id}`);
+        dispatch({type:init,payload:data.amount})
+    }
+ }
 const store=createStore(reducer,applyMiddleware(logger.default,thunk.default));
 function reducer(state={amount:1},action) {
     //immutability
@@ -30,10 +36,6 @@ function reducer(state={amount:1},action) {
 //console.log(store.getState())
 
 
-
-
-
-
 const inc=()=>{
     return {type:increment}
 }
@@ -47,9 +49,9 @@ const iBa=(value)=>{
 const initUser=(v)=>{
     return {type:init,payload:v}
 }
-setInterval(() => {
+setTimeout(() => {
     //store.dispatch({type:'incrementByAmount',payload:4})
    // store.dispatch(iBa(10))
    //store.dispatch(initUser(200))
-   store.dispatch(getUser)
+   store.dispatch(getUsers(2))
 }, 5000);
