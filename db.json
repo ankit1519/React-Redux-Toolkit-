@@ -4,5 +4,11 @@
         {"id":2,"amount":200},
         {"id":3,"amount":400},
         {"id":4,"amount":700}
+    ],
+    "bonus":[
+        {"id":1,"points":90},
+        {"id":2,"points":60},
+        {"id":3,"points":30},
+        {"id":4,"points":50}
     ]
 }
